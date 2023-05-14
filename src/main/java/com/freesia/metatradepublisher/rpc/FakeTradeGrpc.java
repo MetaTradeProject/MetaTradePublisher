@@ -1,4 +1,4 @@
-package com.freesia.metatradegateway.rpc;
+package com.freesia.metatradepublisher.rpc;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -18,29 +18,29 @@ public final class FakeTradeGrpc {
   public static final String SERVICE_NAME = "rpc.FakeTrade";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.freesia.metatradegateway.rpc.proto.FakeTradeMessage,
-      com.freesia.metatradegateway.rpc.proto.SubmitResult> getSubmitFakeTradeMethod;
+  private static volatile io.grpc.MethodDescriptor<com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage,
+      com.freesia.metatradepublisher.rpc.proto.SubmitResult> getSubmitFakeTradeMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SubmitFakeTrade",
-      requestType = com.freesia.metatradegateway.rpc.proto.FakeTradeMessage.class,
-      responseType = com.freesia.metatradegateway.rpc.proto.SubmitResult.class,
+      requestType = com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage.class,
+      responseType = com.freesia.metatradepublisher.rpc.proto.SubmitResult.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.freesia.metatradegateway.rpc.proto.FakeTradeMessage,
-      com.freesia.metatradegateway.rpc.proto.SubmitResult> getSubmitFakeTradeMethod() {
-    io.grpc.MethodDescriptor<com.freesia.metatradegateway.rpc.proto.FakeTradeMessage, com.freesia.metatradegateway.rpc.proto.SubmitResult> getSubmitFakeTradeMethod;
+  public static io.grpc.MethodDescriptor<com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage,
+      com.freesia.metatradepublisher.rpc.proto.SubmitResult> getSubmitFakeTradeMethod() {
+    io.grpc.MethodDescriptor<com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage, com.freesia.metatradepublisher.rpc.proto.SubmitResult> getSubmitFakeTradeMethod;
     if ((getSubmitFakeTradeMethod = FakeTradeGrpc.getSubmitFakeTradeMethod) == null) {
       synchronized (FakeTradeGrpc.class) {
         if ((getSubmitFakeTradeMethod = FakeTradeGrpc.getSubmitFakeTradeMethod) == null) {
           FakeTradeGrpc.getSubmitFakeTradeMethod = getSubmitFakeTradeMethod =
-              io.grpc.MethodDescriptor.<com.freesia.metatradegateway.rpc.proto.FakeTradeMessage, com.freesia.metatradegateway.rpc.proto.SubmitResult>newBuilder()
+              io.grpc.MethodDescriptor.<com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage, com.freesia.metatradepublisher.rpc.proto.SubmitResult>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SubmitFakeTrade"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.freesia.metatradegateway.rpc.proto.FakeTradeMessage.getDefaultInstance()))
+                  com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.freesia.metatradegateway.rpc.proto.SubmitResult.getDefaultInstance()))
+                  com.freesia.metatradepublisher.rpc.proto.SubmitResult.getDefaultInstance()))
               .setSchemaDescriptor(new FakeTradeMethodDescriptorSupplier("SubmitFakeTrade"))
               .build();
         }
@@ -102,8 +102,8 @@ public final class FakeTradeGrpc {
 
     /**
      */
-    default void submitFakeTrade(com.freesia.metatradegateway.rpc.proto.FakeTradeMessage request,
-        io.grpc.stub.StreamObserver<com.freesia.metatradegateway.rpc.proto.SubmitResult> responseObserver) {
+    default void submitFakeTrade(com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage request,
+        io.grpc.stub.StreamObserver<com.freesia.metatradepublisher.rpc.proto.SubmitResult> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSubmitFakeTradeMethod(), responseObserver);
     }
   }
@@ -143,8 +143,8 @@ public final class FakeTradeGrpc {
 
     /**
      */
-    public void submitFakeTrade(com.freesia.metatradegateway.rpc.proto.FakeTradeMessage request,
-        io.grpc.stub.StreamObserver<com.freesia.metatradegateway.rpc.proto.SubmitResult> responseObserver) {
+    public void submitFakeTrade(com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage request,
+        io.grpc.stub.StreamObserver<com.freesia.metatradepublisher.rpc.proto.SubmitResult> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSubmitFakeTradeMethod(), getCallOptions()), request, responseObserver);
     }
@@ -171,7 +171,7 @@ public final class FakeTradeGrpc {
 
     /**
      */
-    public com.freesia.metatradegateway.rpc.proto.SubmitResult submitFakeTrade(com.freesia.metatradegateway.rpc.proto.FakeTradeMessage request) {
+    public com.freesia.metatradepublisher.rpc.proto.SubmitResult submitFakeTrade(com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSubmitFakeTradeMethod(), getCallOptions(), request);
     }
@@ -198,8 +198,8 @@ public final class FakeTradeGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.freesia.metatradegateway.rpc.proto.SubmitResult> submitFakeTrade(
-        com.freesia.metatradegateway.rpc.proto.FakeTradeMessage request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.freesia.metatradepublisher.rpc.proto.SubmitResult> submitFakeTrade(
+        com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSubmitFakeTradeMethod(), getCallOptions()), request);
     }
@@ -225,8 +225,8 @@ public final class FakeTradeGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SUBMIT_FAKE_TRADE:
-          serviceImpl.submitFakeTrade((com.freesia.metatradegateway.rpc.proto.FakeTradeMessage) request,
-              (io.grpc.stub.StreamObserver<com.freesia.metatradegateway.rpc.proto.SubmitResult>) responseObserver);
+          serviceImpl.submitFakeTrade((com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage) request,
+              (io.grpc.stub.StreamObserver<com.freesia.metatradepublisher.rpc.proto.SubmitResult>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -250,8 +250,8 @@ public final class FakeTradeGrpc {
           getSubmitFakeTradeMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              com.freesia.metatradegateway.rpc.proto.FakeTradeMessage,
-              com.freesia.metatradegateway.rpc.proto.SubmitResult>(
+              com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage,
+              com.freesia.metatradepublisher.rpc.proto.SubmitResult>(
                 service, METHODID_SUBMIT_FAKE_TRADE)))
         .build();
   }
@@ -262,7 +262,7 @@ public final class FakeTradeGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.freesia.metatradegateway.rpc.proto.FakeTradeProto.getDescriptor();
+      return com.freesia.metatradepublisher.rpc.proto.FakeTradeProto.getDescriptor();
     }
 
     @java.lang.Override

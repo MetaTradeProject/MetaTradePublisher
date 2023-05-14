@@ -1,10 +1,10 @@
-package com.freesia.metatradegateway.jni;
+package com.freesia.metatradepublisher.jni;
 
-import com.freesia.metatradegateway.MetaTradeGatewayApplication;
+import com.freesia.metatradepublisher.MetaTradePublisherApplication;
 
 public class JniSigner{
     static {
-        if (MetaTradeGatewayApplication.class.getResource("").getProtocol().equals("jar")) {
+        if (MetaTradePublisherApplication.class.getResource("").getProtocol().equals("jar")) {
             String path = System.getProperty("user.dir") + "/lib/libsigner.so";
             System.load(path);
         }
