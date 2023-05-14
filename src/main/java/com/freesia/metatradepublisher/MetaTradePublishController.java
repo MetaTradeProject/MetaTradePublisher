@@ -17,29 +17,32 @@ import com.freesia.metatradepublisher.rpc.FakeTradeClient;
 @RequestMapping(value = "/meta-trade")
 public class MetaTradePublishController {
     private final FakeTradeClient client;
+    private final MetaTradePublishConfig config;
 
     @Autowired
     public MetaTradePublishController(){
-        client = new FakeTradeClient(null, 8456);
+        config = new MetaTradePublishConfig();
+        client = null;
+        //client = new FakeTradeClient(null, 8456);
     }
 
     @RequestMapping(value = "/stores", method = RequestMethod.GET, produces = "application/json")
     public List<StoreInfo> getStoreInfoList(){
-        return null;
+        return config.getStoreInfoList();
     }
 
     @RequestMapping(value = "/store/{address}/info", method = RequestMethod.GET, produces = "application/json")
-    public List<StoreInfo> getStoreInfo(@PathVariable("address") String address){
-        return null;
+    public StoreInfo getStoreInfo(@PathVariable("address") String address){
+        return config.getStoreInfoByAddress(address);
     }
 
     @RequestMapping(value = "/store/{address}/items", method = RequestMethod.GET, produces = "application/json")
     public List<ItemInfo> getItemInfoList(@PathVariable("address") String address){
-        return null;
+        return config.getItemInfoList(address);
     }
 
     @RequestMapping(value = "/store/{address}/item/{item_id}", method = RequestMethod.GET, produces = "application/json")
-    public ItemInfo getItemInfo(@RequestParam("address") String address, @RequestParam("item_id") String item_id){
-        return null;
+    public ItemInfo getItemInfo(@PathVariable("address") String address, @PathVariable("item_id") String item_id){
+        return config.getItemById(address, item_id);
     }
 }
