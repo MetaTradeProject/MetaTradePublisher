@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.freesia.metatradegateway.rpc";
+option java_outer_classname = "FakeTradeProto";
+
+package rpc;
+
+// Interface exported by the server.
+service FakeTrade {
+  rpc SubmitFakeTrade(FakeTradeMessage) returns (SubmitResult) {}
+}
+
+message FakeTradeMessage {
+    string senderAddress = 1;
+    string receiverAddress = 2;
+    double amount = 3;
+    int64 timestamp = 4;
+    string signature = 5;
+    string senderPublicKey = 6;
+    string description = 7;
+}
+
+message SubmitResult {
+    bool result = 1;
+}
