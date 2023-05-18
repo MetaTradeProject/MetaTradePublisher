@@ -1,7 +1,7 @@
 [
     {
         "id": "1", 
-        "amount": 1.00, 
+        "amount": 100,
         "store_address": "123456", 
         "description": "des"
     }
