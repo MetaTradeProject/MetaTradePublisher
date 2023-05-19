@@ -26,7 +26,105 @@ Todo
 `Fake Trade`的签名过程在服务端进行，因此客户端逻辑只需要实现提交请求
 
 ### 如何使用`Fake Trade`服务
+提交一条`Fake Trade`需要以下字段：
+- `Store Address`：非用户（商店）节点的地址
+- `Receiver Address`：接收物品的节点地址，需要是真实节点
+- `item id`：提交的物品id（`0`默认为`coin`）
+- `amount`：数量
+
+其中，`Store Address`和`item id`需要在`Url`路径中直接请求，可以通过其他的`GET`请求来获得所有`Store`或者`Item`的信息，请参阅[`Api`接口介绍](#`Api`接口介绍)
 
 ### 如何使用`Cron job`来实现自定义的`Fake Trade`服务
+todo
 
 ## `Api`接口介绍
+### 查询所有商店信息
+- `path`: `/stores`
+- `method`: `GET`
+- `response`:
+```json
+[
+    {
+        "address": "123", 
+        "id": "123",
+        "description": "none"
+    },
+
+    {
+        "address": "123", 
+        "id": "123",
+        "description": "none"
+    }
+]
+```
+
+### 查询指定商店信息
+- `path`: `/store/{address}`
+- `path params`: `address`
+- `method`: `GET`
+- `response`:
+```json
+{
+    "address": "123", 
+    "id": "123",
+    "description": "none"
+}
+```
+- `status code`: `404 - Store not found`
+
+### 查询指定商店所有物品信息
+- `path`: `/store/{address}/items`
+- `path params`: `address`
+- `method`: `GET`
+- `response`:
+```json
+[
+    {
+        "id": "123",
+        "amount": 500,
+        "store_address": "123", 
+        "description": "none"
+    },
+    {
+        "id": "1234",
+        "amount": 500,
+        "store_address": "456", 
+        "description": "none"
+    }
+]
+```
+- `status code`: `404 - Store not found`
+
+### 查询指定商店指定物品信息
+- `path`: `/store/{address}/item/{item_id}`
+- `path params`: `address`, `item_id`
+- `method`: `GET`
+- `response`:
+```json
+{
+    "id": "1234",
+    "amount": 500,
+    "store_address": "456", 
+    "description": "none"
+}
+```
+- `status code`: `404 - Store, Item not found`
+
+### 提交单次`Fake Trade`信息
+- `path`: `/store/{address}/item/{item_id}/simple-trade`
+- `path params`: `address`, `item_id`
+- `method`: `POST`
+- `request`:
+```json
+{
+    "receiverAddress": "1234",
+    "amount": 100
+}
+```
+- `response`:
+```json
+{
+    "res": "ok"
+}
+```
+- `status code`: `404 - Store or item not found`

@@ -74,7 +74,7 @@ public class MetaTradePublishController {
             return res;
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store, Item not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
         }
     }
 
