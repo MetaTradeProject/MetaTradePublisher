@@ -3,16 +3,19 @@ package com.freesia.metatradepublisher;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.alibaba.fastjson.JSONObject;
 import com.freesia.metatradepublisher.jni.JniSigner;
 import com.freesia.metatradepublisher.model.ItemInfo;
 import com.freesia.metatradepublisher.model.SimpleTradeRequest;
+import com.freesia.metatradepublisher.model.SimpleTradeResponse;
 import com.freesia.metatradepublisher.model.StoreInfo;
 import com.freesia.metatradepublisher.model.Trade;
 import com.freesia.metatradepublisher.rpc.FakeTradeClient;
@@ -50,7 +53,7 @@ public class MetaTradePublishController {
     }
 
     @RequestMapping(value = "/store/{address}/item/{item_id}/trade", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-    public void sendSimpleTrade(@PathVariable("address") String address, @PathVariable("item_id") String item_id, @RequestBody SimpleTradeRequest request){
+    public SimpleTradeResponse sendSimpleTrade(@PathVariable("address") String address, @PathVariable("item_id") String item_id, @RequestBody SimpleTradeRequest request){
         var info = config.getStoreInfoByAddress(address);
         if(info != null){
             if(item_id.equals("0")){
@@ -71,9 +74,10 @@ public class MetaTradePublishController {
                 trade.setSignature(signature);
                 client.RequestFakeTradeSync(trade);
             }
+            return new SimpleTradeResponse("ok");
         }
         else{
-
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store not found");
         }
     }
 }
