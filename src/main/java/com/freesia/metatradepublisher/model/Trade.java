@@ -122,6 +122,6 @@ public class Trade {
 
     @JsonIgnore
     public String getHash() {
-        return CryptoUtils.getSHA256(senderAddress + receiverAddress + amount + commission + timestamp);
+        return CryptoUtils.getSHA256(senderAddress + receiverAddress + amount + commission + timestamp + description);
     }
 }
