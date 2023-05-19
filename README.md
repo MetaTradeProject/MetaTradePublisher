@@ -110,7 +110,7 @@ todo
 ```
 - `status code`: `404 - Store, Item not found`
 
-### 提交单次`Fake Trade`信息
+### 提交单次`Fake Trade`信息（即刻生效，一次生命周期）
 - `path`: `/store/{address}/item/{item_id}/simple-trade`
 - `path params`: `address`, `item_id`
 - `method`: `POST`
