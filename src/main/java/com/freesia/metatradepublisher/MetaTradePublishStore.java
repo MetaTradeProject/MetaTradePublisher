@@ -9,11 +9,11 @@ import com.alibaba.fastjson.JSONReader;
 import com.freesia.metatradepublisher.model.ItemInfo;
 import com.freesia.metatradepublisher.model.StoreInfo;
 
-public class MetaTradePublishConfig {
+public class MetaTradePublishStore {
     Map<String, StoreInfo> store_address_info_map;
     Map<String, Map<String, ItemInfo>> store_address_item_id_info_map;
 
-    public MetaTradePublishConfig(){
+    public MetaTradePublishStore(){
         store_address_info_map =  new ConcurrentHashMap<>();
         store_address_item_id_info_map = new ConcurrentHashMap<>();
 
@@ -28,8 +28,8 @@ public class MetaTradePublishConfig {
             storesPath = System.getProperty("user.dir") + "/config/store_list.json";
         }
         else{
-            itemsPath = MetaTradePublishConfig.class.getClassLoader().getResource("//").getPath() + "item_list.json";
-            storesPath = MetaTradePublishConfig.class.getClassLoader().getResource("//").getPath() + "store_list.json";
+            itemsPath = MetaTradePublishStore.class.getClassLoader().getResource("//").getPath() + "item_list.json";
+            storesPath = MetaTradePublishStore.class.getClassLoader().getResource("//").getPath() + "store_list.json";
         }
         
         try (JSONReader reader = new JSONReader(new FileReader(storesPath))) {

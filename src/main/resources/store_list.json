@@ -2,6 +2,8 @@
     {
         "address": "123456",
         "id": "1",
-        "description": "1"
+        "description": "1",
+        "pubkey": "123",
+        "prikey": "123"
     }
 ]
