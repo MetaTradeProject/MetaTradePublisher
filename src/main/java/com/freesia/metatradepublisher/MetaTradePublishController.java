@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.support.CronExpression;
+import org.springframework.scheduling.support.CronSequenceGenerator;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -123,6 +125,10 @@ public class MetaTradePublishController {
     public CronTradeResponse postCronTrade(@PathVariable("address") String address, @PathVariable("item_id") String item_id, @RequestBody CronTradeRequest request){
         var info = config.getItemById(address, item_id);
         if(info != null){
+            if(!CronExpression.isValidExpression(request.cron())){
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Unvalid cron expression");
+            }
+            
             CronTrade cronTrade = new CronTrade(request.cron(), info.store_address(), request.receiverAddress(), info.id(), request.amount());
             return new CronTradeResponse(tradePool.RegisterCronTrade(cronTrade));
         }
@@ -136,7 +142,7 @@ public class MetaTradePublishController {
         var info = config.getItemById(address, item_id);
         if(info != null){
             if(!tradePool.UnregisterCronTrade(key)){
-                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "key not found");
+                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Key not found");
             }
         }
         else{
@@ -148,10 +154,14 @@ public class MetaTradePublishController {
     public void putCronTrade(@PathVariable("address") String address, @PathVariable("item_id") String item_id, @PathVariable("key") String key, @RequestBody CronTradeRequest request){
         var info = config.getItemById(address, item_id);
         if(info != null){
+            if(!CronExpression.isValidExpression(request.cron())){
+                throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Unvalid cron expression");
+            }
+
             CronTrade cronTrade = new CronTrade(request.cron(), info.store_address(), request.receiverAddress(), info.id(), request.amount());
 
             if(!tradePool.UpdateCronTrade(key, cronTrade)){
-                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "key not found");
+                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Key not found");
             }
         }
         else{
@@ -168,7 +178,7 @@ public class MetaTradePublishController {
                 return res;
             }
             else{
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Store, Item not found");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Key not found");
             }
         }
         else{
