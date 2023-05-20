@@ -32,12 +32,12 @@ Todo
 - `item id`：提交的物品id（`0`默认为`coin`）
 - `amount`：数量
 
-其中，`Store Address`和`item id`需要在`Url`路径中直接请求，可以通过其他的`GET`请求来获得所有`Store`或者`Item`的信息，请参阅[`Api`接口介绍](#`Api`接口介绍)
+其中，`Store Address`和`item id`需要在`Url`路径中直接请求，可以通过其他的`GET`请求来获得所有`Store`或者`Item`的信息，请参阅[Api接口介绍](#Api接口介绍)
 
 ### 如何使用`Cron job`来实现自定义的`Fake Trade`服务
 todo
 
-## `Api`接口介绍
+## Api接口介绍
 ### 查询所有商店信息
 - `path`: `/stores`
 - `method`: `GET`

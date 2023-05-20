@@ -10,9 +10,9 @@
     </parent>
     <groupId>com.freesia</groupId>
     <artifactId>MetaTradePublisher</artifactId>
-    <version>1.0.0-RELEASE</version>
+    <version>Version 1.1.0</version>
     <name>MetaTradePublisher</name>
-    <description>MetaTradePublisher</description>
+    <description>Expand Serivce</description>
     <properties>
         <java.version>17</java.version>
     </properties>
