@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.freesia</groupId>
     <artifactId>MetaTradePublisher</artifactId>
-    <version>Version 1.1.0</version>
+    <version>Version-1.1.0</version>
     <name>MetaTradePublisher</name>
     <description>Expand Serivce</description>
     <properties>
