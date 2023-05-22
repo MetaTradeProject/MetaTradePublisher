@@ -6,7 +6,9 @@ import com.freesia.metatradepublisher.rpc.proto.FakeTradeMessage;
 
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class FakeTradeClient {
     private final FakeTradeBlockingStub blockingStub;
     
@@ -16,6 +18,7 @@ public class FakeTradeClient {
     }
 
     public boolean RequestFakeTradeSync(Trade trade){
+        log.info("gRPC Client: Receiver a fake trade, send to Server.");
         FakeTradeMessage message = FakeTradeMessage.newBuilder().setSenderAddress(trade.getSenderAddress())
                                                                 .setReceiverAddress(trade.getReceiverAddress())
                                                                 .setAmount(trade.getAmount())

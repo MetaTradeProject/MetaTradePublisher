@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.support.CronExpression;
-import org.springframework.scheduling.support.CronSequenceGenerator;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,6 +95,7 @@ public class MetaTradePublishController {
         var info = config.getStoreInfoByAddress(address);
         var info2 = config.getItemById(address, item_id);
         if(info != null && info2 != null){
+            log.info("Receive simple trade {} on {}", address, item_id);
             Trade trade = null;
             if(item_id.equals("0")){
                 trade = new Trade(address, request.receiverAddress(), request.amount(), 
@@ -128,7 +128,7 @@ public class MetaTradePublishController {
             if(!CronExpression.isValidExpression(request.cron())){
                 throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Unvalid cron expression");
             }
-            
+            log.info("Receive cron trade {} on {} cron: {} ", address, item_id, request.cron());
             CronTrade cronTrade = new CronTrade(request.cron(), info.store_address(), request.receiverAddress(), info.id(), request.amount());
             return new CronTradeResponse(tradePool.RegisterCronTrade(cronTrade));
         }
